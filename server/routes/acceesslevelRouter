@@ -1,0 +1,10 @@
+const Router = require('express')
+const router = new Router()
+const acceesslevelController = require('../controllers/acceesslevelController.js')
+
+router.post('/addnew', acceesslevelController.addNew);
+router.get('/all', acceesslevelController.getAll);
+router.get('/:id', acceesslevelController.getById);
+router.post('/delete', acceesslevelController.delete)
+
+module.exports = router
