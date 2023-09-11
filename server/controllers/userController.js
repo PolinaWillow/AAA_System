@@ -79,8 +79,8 @@ class UserController{
 
     //Проверка на авторизованность
     async check(req,res){
-        //Универсальная обработка ошибки
-        const token = generateJwt(req.user.id, req.user.email, req.user.role)
+        //Генерируем токен
+        const token = generateJwt(req.user.id, req.user.email, req.user.level)
         return res.json({token})
     }
 

@@ -4,6 +4,7 @@ const ApiError = require('../error/apiError')
 class EncryptedTextController{
     //Добавление нового шифра
     async addNew(req,res){
+        res.json({message: "Шифр добавлен"})
             /*const {text, userId} = req.body
             const encryptedText =await Encrypted_Text.create({
                 text, userId
