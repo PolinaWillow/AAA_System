@@ -1,0 +1,65 @@
+.reg-page{
+    width: 100%;
+    height: 100vh;
+    background-color: #83AFBF;
+    padding-top: 5%;
+}
+
+.reg-block{
+    background-color: #ffffff;
+    border-radius: 28px;
+    margin-left: 35%;
+    padding: 1%;
+    width: 30%;
+    height: 80vh;
+    box-shadow: 1px 2px 19px 7px rgba(0, 0, 0, 0.25)
+}
+
+.reg-header-1{
+    display: block;
+    
+    margin-bottom: 0%;
+
+    font-weight: bold;
+    font-size: 1.3em;
+    font-family:  'Georgia', serif;
+
+}
+
+.reg-header-2{
+    display: block;
+    margin-top: 1%;
+
+    font-weight: lighter;
+    font-size: 0.9em;
+    font-family:  'Snell Roundhand', cursive;
+
+}
+
+.reg-inputs .div-input:not(:first-child){
+    margin-top: 5%;
+}
+
+.reg-inputs{
+    margin-bottom: 10%;
+    margin-top: 10%;
+}
+
+.reg-input{
+    display: block;
+    width: 80%;
+    padding: 2% 4% 2% 4%;
+    border-radius: 12px;
+    border-style: none;
+    background-color: #C1E1EA;
+    font-size: 0.9em;
+    font-family:  'Snell Roundhand', cursive;
+}
+
+.navAuthBtn{
+    margin-top: 35%;
+}
+
+.reg-close{
+    margin-left: 1%;
+}

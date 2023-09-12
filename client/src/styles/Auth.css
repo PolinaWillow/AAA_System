@@ -1,0 +1,65 @@
+.auth-page{
+    width: 100%;
+    height: 100vh;
+    background-color: #83AFBF;
+    padding-top: 5%;
+}
+
+.auth-block{
+    background-color: #ffffff;
+    border-radius: 28px;
+    margin-left: 35%;
+    width: 30%;
+    height: 80vh;
+    padding: 1%;
+    box-shadow: 1px 2px 19px 7px rgba(0, 0, 0, 0.25)
+}
+
+.auth-logo{
+    margin-top: 1%;
+}
+
+.auth-header-1{
+    display: block;
+    margin-top: 1%;
+    margin-bottom: 0%;
+
+    font-weight: bold;
+    font-size: 1.3em;
+    font-family:  'Georgia', serif;
+
+}
+
+.auth-header-2{
+    display: block;
+    margin-top: 1%;
+
+    font-weight: lighter;
+    font-size: 0.9em;
+    font-family:  'Snell Roundhand', cursive;
+
+}
+
+.auth-inputs .div-input:not(:first-child){
+    margin-top: 5%;
+}
+
+.auth-inputs{
+    margin-bottom: 5%;
+    margin-top: 7%;
+}
+
+.auth-input{
+    display: block;
+    width: 80%;
+    padding: 2% 4% 2% 4%;
+    border-radius: 12px;
+    border-style: none;
+    background-color: #C1E1EA;
+    font-size: 0.9em;
+    font-family:  'Snell Roundhand', cursive;
+}
+
+.auth-close{
+    margin-top: 1%;
+}
