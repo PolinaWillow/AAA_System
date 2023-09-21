@@ -1,0 +1,18 @@
+.dencr-block{
+    display: inline-block;
+    margin-top: 10%;
+    border-radius: 9px;
+    border-color: #83AFBF;
+    border-style: solid;
+    width: 70%;
+    height: 60vh;
+    padding: 1.5%;
+}
+
+.dencr-close{
+    margin: -2rem 0.5rem -2rem auto;
+}
+
+.dencr-p{
+    display: inline-block;
+}

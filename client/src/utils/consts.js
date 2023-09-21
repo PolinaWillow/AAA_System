@@ -1,6 +1,0 @@
-export const HOME_ROUTE = '/'
-export const ADMIN_ROUTE = '/admin'
-export const AUTH_ROUTE = '/auth'
-export const REGISTRATION_ROUTE = '/registration'
-export const ENCRYPTED_ROUTE = '/encrypted'
-export const DENCRYPTED_ROUTE = '/dencrypted'

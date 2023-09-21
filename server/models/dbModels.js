@@ -21,7 +21,8 @@ const User = sequelize.define('user', {
 const Encrypted_Text = sequelize.define('encrypted_text', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     //user_id: {type: DataTypes.INTEGER, allowNull: false},
-    text: {type: DataTypes.TEXT, allowNull: false}
+    text: {type: DataTypes.TEXT, allowNull: false},
+    keys: {type: DataTypes.TEXT, allowNull: false}
 });
 
 //Модель расшифрованного текста

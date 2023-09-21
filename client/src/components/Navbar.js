@@ -1,52 +1,63 @@
-import React, { useContext } from "react";
-import {Button} from 'react-bootstrap'
-import { Context } from '..';
-import "../styles/Navbar.css"
-import logo from '../img/LogoNavbar.png';
-import { observer } from "mobx-react-lite";
+import React, {useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
-import { AUTH_ROUTE, REGISTRATION_ROUTE } from "../utils/consts";
+import {AuthContext} from '../context/AuthContext'
+import {Button} from 'react-bootstrap'
+import logo from '../static/icons/Logo.svg'
+import adminLogo from '../static/icons/admin.svg'
+import "../static/css/navbar.css"
+import "../static/css/base.css"
 
-export const Navbar=observer(()=>{
-    const {user} = useContext(Context)
+export const Navbar = ()=>{
     const navigate = useNavigate();
+    //Переходы на страницы
+    const navigateAuth = () => { navigate('/auth') };
+    const navigateReg = () => { navigate('/reg') };
+    const navigateAdmin = () => { navigate('/admin') };
+    const navigateHome = () => { navigate('/') };
 
-    //Переходы на страницы Auth и Registartion
-    const navigateAuth = () => { navigate(AUTH_ROUTE) };
-    const navigateReg = () => { navigate(REGISTRATION_ROUTE) };
 
-    //Выход из учетной записи пользователя
-    const logOut = () => {
-        user.setUser({})
-        user.setIsAuth(false)
-    }
+    const auth = useContext(AuthContext)
+    const logoutHandler = event => {
+        event.preventDefault()
+        auth.logout()
+        navigateHome()
+      }
+
+  
+    //console.log(auth)
     
+
     return (
-        <div className ="navBar">
-            <div className = "text-center">
-                <img className = "navLogo" src={logo} alt="Лого Навбара"/>
-            </div>           
+        <div className='nav-body text-center'>
+            <img src={logo} alt="Лого Навбара"/>
             <div>
-                {user.isAuth ? 
+                {auth.token?(
                 <div >
-                    <p className="text-center navUserName">{"Login"}</p>
-                    <p className="text-center navaAcceessLevel">Your Accees Level is <b>{"Admin"}</b></p>
-                    <div className="d-flex justify-content-center">
-                        <Button className="base-btn" onClick={() => logOut()}>Exit</Button>
+                    <p className='base-header-1'>{auth.userLogin}</p>
+                    <p className='base-header-2'>Your Accees Level is {auth.userLevel}</p>
+                    {auth.userLevel ==="ADMIN" && (
+                        <div className='nav-admin-logo'>
+                            <img className='adminLogo' src={adminLogo} onClick={navigateAdmin} alt="For Admin" />
+                        </div>
+                    )}
+                    
+                    
+                    <Button className='base-btn nav-exit-btn' onClick={logoutHandler}>Exit</Button>
+                   
+                </div>
+                ):(
+                <div className='nav-auth-btn-block'>
+                    <div>
+                        <Button className='base-btn' onClick={navigateAuth}>Log in</Button>        
                     </div>
+                    <div>
+                        <Button className='base-btn' onClick={navigateReg}>Sign up</Button>
+                    </div>                           
                     
                 </div>
-                :
-                <div className="per-base-btn navAuthBtn">
-                    <div className="div-btn d-flex justify-content-center">
-                        <Button className="base-btn" onClick={navigateAuth}>Log in</Button>
-                    </div>
-                    <div className="div-btn d-flex justify-content-center">
-                        <Button className="base-btn" onClick={navigateReg}>Sign up</Button>
-                    </div>
-                </div>
-                }
+                )}
             </div>  
         </div>
     )
-})
+    
+}

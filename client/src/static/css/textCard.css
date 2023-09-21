@@ -1,0 +1,30 @@
+.text-card-header{
+    margin-bottom: 1%;
+}
+
+.text-card-header-text{
+    display: inline-block;
+    margin: 0%;
+}
+.text-card-icons{
+    margin-left: 5%;
+    display: inline-block;
+    width: 30%;
+}
+
+.text-card-icons .text-card-icon:not(:first-child){
+    margin-left: 3%;
+}
+
+.text-card-icon:hover{
+    cursor: pointer;
+}
+
+.text-card-hr{
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.dencr-text{
+    margin-top: 5%;
+}

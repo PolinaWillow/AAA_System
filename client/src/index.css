@@ -1,0 +1,37 @@
+@import 'bootstrap/dist/css/bootstrap.css';
+
+div input:not(:first-child){
+    margin-top: 5%;
+}
+div input:last-child{
+    margin-bottom: 5%;
+}
+
+input{
+    width: 80%;
+    padding: 2% 4% 2% 4%;
+    border-radius: 9px;
+    border-style: none;
+    background-color: #C1E1EA;
+    font-size: 0.9em;
+    font-family:  'Snell Roundhand', cursive;
+}
+
+hr{
+    /*margin: 0%;*/
+    margin-bottom: 2%;
+}
+
+textarea{
+    margin: 1% 0%;
+    height: 40vh;
+    background-color: #E0EFF3 !important;
+}
+
+p{
+    margin: 0%;
+}
+
+img {
+    vertical-align:baseline
+}

@@ -1,0 +1,31 @@
+.nav-body{
+    margin: 0%;
+    width: 25%/*345px*/;
+    height: 100vh;
+    padding-top: 5%;
+    background-color: #83AFBF;
+    display: inline-block;
+    float: right;
+
+    box-shadow: -2px 1px 6px #586070
+}
+
+.nav-admin-logo{
+    margin-top: 10%;
+}
+
+.nav-exit-btn{
+    margin-top: 15%;
+}
+
+.nav-auth-btn-block{
+    margin-top: 30%;
+}
+
+.nav-auth-btn-block .base-btn {
+    margin-top: 5%;
+}
+
+.adminLogo:hover{
+    cursor: pointer;
+}

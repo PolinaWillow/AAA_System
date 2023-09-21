@@ -5,19 +5,23 @@ const fileUpload = require('express-fileupload')
 
 const sequelize = require('./db.js') //Конфигурации для подключения к БД
 const models = require('./models/dbModels.js') //Модели БД
-const router = require('./routes/routes.js')
 const errorHandler = require('./middleware/errorHandlingMiddleware.js')
 const path = require('path')
 
 const PORT = process.env.PORT||5000; //Полчуение значения порта
 const app = express(); //Объект представляющий приложениеы
 //Конвейер обраотки запросов
-app.use(cors())
-app.use(express.json())
+app.use(cors({
+      credentials: true,
+      origin: ["http://localhost:3000"],
+      optionsSuccessStatus: 200
+    })
+);
+app.use(express.json({extended: true}))
 app.use(express.static(path.resolve(__dirname,'static/img'))) //Доступ к статическим файлам c картинками
 app.use(express.static(path.resolve(__dirname,'static/pdf')))//Доступ к статическим файлам c pdf
 app.use(fileUpload({}))
-app.use('/api', router)
+app.use('/api', require('./routes/routes.js'))
 
 //Обработка ошибки
 app.use(errorHandler)

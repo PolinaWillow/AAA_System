@@ -4,6 +4,7 @@ const encryptedTextController = require('../controllers/encryptedtextController'
 
 router.post('/addnew', encryptedTextController.addNew);
 router.get('/all', encryptedTextController.getAll);
+router.get('/delete:id', encryptedTextController.deleteOne);
 router.get('/:id', encryptedTextController.getById);
 
 module.exports = router
