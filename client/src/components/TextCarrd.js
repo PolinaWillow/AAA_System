@@ -18,8 +18,12 @@ export const TextCard=({encrText, elementNum})=>{
             <div className="text-card-header">
                 <p className="text-card-header-text">{elementNum}. Chipher №{elementNum}</p>
                 <div className="text-card-icons">
-                    <img className = "text-card-icon" src={dencrypeBtn} alt="Dencrypte text" onClick={navigateDencryped}/>                   
-                    <img className = "text-card-icon" src={deleteBtn} alt="Delete encryption" role="button" data-bs-toggle="modal" data-bs-target="#DeleteEncrModal"/>
+                    {(auth.userLevel ==="ADMIN" || auth.userLevel ==="DECRYPTOR")&&(
+                        <img className = "text-card-icon" src={dencrypeBtn} alt="Dencrypte text" onClick={navigateDencryped}/> 
+                    )}
+                    {(auth.userLevel ==="ADMIN" || auth.userLevel ==="ENCODER")&&(                  
+                        <img className = "text-card-icon" src={deleteBtn} alt="Delete encryption" role="button" data-bs-toggle="modal" data-bs-target="#DeleteEncrModal"/>
+                    )}
                 </div>
             </div>
             

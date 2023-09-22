@@ -35,8 +35,12 @@ export const HomePage = () =>{
                     
                 </div>
                 <div className='home-footer-block'>
-                    <img className = "home-addBtn" src={addBtn} alt="Add Encryption" role="button" data-bs-toggle="modal" data-bs-target="#AddTextModal"/>
-                    <AddEncryptionText BlockId = {"AddTextModal"} creatorId={auth.userId}/>
+                {(auth.userLevel ==="ADMIN" || auth.userLevel ==="ENCODER")&&( 
+                    <>
+                        <img className = "home-addBtn" src={addBtn} alt="Add Encryption" role="button" data-bs-toggle="modal" data-bs-target="#AddTextModal"/>
+                        <AddEncryptionText BlockId = {"AddTextModal"} creatorId={auth.userId}/>
+                    </>         
+                )}
                 </div>
             </div>           
         </div>
