@@ -5,5 +5,9 @@ const dencryptedTextController = require('../controllers/dencryptedtextControlle
 router.post('/addnew', dencryptedTextController.addNew);
 router.get('/all', dencryptedTextController.getAll);
 router.get('/:id', dencryptedTextController.getById);
+router.post('/createPDF/:id', dencryptedTextController.createPDF);
+router.get('/getPdf/:fileName', dencryptedTextController.getPDF)
+router.get('/deletePdf/:fileName', dencryptedTextController.deletePDF)
+
 
 module.exports = router

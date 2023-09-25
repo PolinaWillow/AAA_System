@@ -20,6 +20,7 @@ app.use(cors({
 app.use(express.json({extended: true}))
 app.use(express.static(path.resolve(__dirname,'static/img'))) //Доступ к статическим файлам c картинками
 app.use(express.static(path.resolve(__dirname,'static/pdf')))//Доступ к статическим файлам c pdf
+app.use(express.static('public'))
 app.use(fileUpload({}))
 app.use('/api', require('./routes/routes.js'))
 

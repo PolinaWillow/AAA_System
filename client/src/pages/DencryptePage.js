@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import saveBtn from "../static/icons/download.svg"
 import "../static/css/base.css"
 import "../static/css/dencrypte.css"
+import axios from 'axios'
+import { saveAs } from 'file-saver';
 
 export const DencryptePage=()=>{
     const auth = useContext(AuthContext)
@@ -26,6 +28,23 @@ export const DencryptePage=()=>{
       fetchLinks()
     }, [fetchLinks])
 
+    const getPDF = async()=>{
+        try {
+            let fileName = `dencrText1.pdf`
+            axios.post(`http://localhost:7000/api/dencryptedtext/createPDF/${textId}`, {fileName}
+            ).then(() =>
+                axios.get(`http://localhost:7000/api/dencryptedtext/getPdf/${fileName}`, { responseType: 'blob' })
+                
+            ).then((res) => {
+                console.log(res)
+                const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+                saveAs(pdfBlob, 'dencr-text.pdf');
+            }).then(()=>axios.get(`http://localhost:7000/api/dencryptedtext/deletePdf/${fileName}`))        
+        } catch (error) {
+            
+        }
+    }
+
     return(
         <div>
             <Navbar/>
@@ -33,7 +52,7 @@ export const DencryptePage=()=>{
                 <div className="dencr-block">
                     <div className="text-start" >
                         <div className="text-end">
-                            <img className = "text-card-icon" src={saveBtn} alt="save as filet"/>  
+                            <img className = "text-card-icon" src={saveBtn} alt="save as filet" onClick={getPDF}/>  
                             <Link to={'/'} type="button" className="btn-close" aria-label="Закрыть"/>
                         </div>
                         <p className="base-header-1 dencr-p">Dencrypted text</p>

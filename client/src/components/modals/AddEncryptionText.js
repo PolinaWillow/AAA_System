@@ -11,9 +11,9 @@ export const AddEncryptionText = ({BlockId, creatorId}) =>{
     const [newText, setNewText] = useState({
         text: '', userId: ''
     })
+    //const [textDirty, setTextDirty] = useState('false')
+    //const [textError, setTextError] = useState('Вы не заполнили поле для шифровки')
 
-    //console.log(creatorId)
-    //console.log(newText)
 
     const ChangeHandler = event =>{
         setNewText({...newText, [event.target.name]:event.target.value})
@@ -51,14 +51,13 @@ export const AddEncryptionText = ({BlockId, creatorId}) =>{
                 <div className="modal-content modal-background">
                     <p className="base-header-1">New encryption text</p> 
                     <hr/>
-                    <form>
-                                                                      
-                    <p className="base-header-2">Please, enter your texst</p>
-                    <textarea className="form-control" name='text' placeholder='Your text' onChange={ChangeHandler}></textarea>
-                    <div className='text-end modal-btns'>
-                        <button type="button" className="base-btn base-btn-small" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" className="base-btn base-color-red base-btn-small" data-bs-dismiss="modal" disabled={loading} onClick={encrypteHandler}>Encrypte</button>
-                    </div>
+                    <form>                                              
+                        <p className="base-header-2">Please, enter your texst</p>
+                        <textarea className="form-control" name='text' placeholder='Your text' onChange={ChangeHandler}></textarea>
+                        <div className='text-end modal-btns'>
+                            <button type="button" className="base-btn base-btn-small" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" className="base-btn base-color-red base-btn-small" data-bs-dismiss="modal" disabled={loading} onClick={encrypteHandler}>Encrypte</button>
+                        </div>
                     </form> 
                 </div>                                                                     
                 </div>
