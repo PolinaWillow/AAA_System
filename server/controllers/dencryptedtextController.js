@@ -70,7 +70,9 @@ class DencryptedTextController{
     }
 
     async getPDF(req,res){
+        //console.log(req.params.fileName)
         let foolFileName = path.resolve(__dirname,'..','static','pdf',req.params.fileName)
+        //console.log(foolFileName)
         res.sendFile(foolFileName)
     }
 

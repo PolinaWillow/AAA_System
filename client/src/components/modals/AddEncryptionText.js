@@ -35,7 +35,7 @@ export const AddEncryptionText = ({BlockId, creatorId}) =>{
             //console.log(auth.userId)
             //setNewText({...newText, userId: creatorId})
             //console.log(newText)
-            const data = await request('http://localhost:7000/api/encryptedtext/addnew', 'POST', {...newText})
+            const data = await request('http://localhost:7000/api/encryptedtext/addnew', 'POST', {...newText}, {Authorization: `Bearer ${auth.token}`})
             alert("New encrypted text was created")
             window.location.reload();      
         } catch (error) {

@@ -2,9 +2,11 @@ const Router = require('express')
 const router = new Router()
 const encryptedTextController = require('../controllers/encryptedtextController')
 
-router.post('/addnew', encryptedTextController.addNew);
+const checkLevel = require('../middleware/chekLevelMiddleware.js')
+
+router.post('/addnew',checkLevel(['ADMIN', 'ENCODER']), encryptedTextController.addNew);
 router.get('/all', encryptedTextController.getAll);
-router.get('/delete:id', encryptedTextController.deleteOne);
-router.get('/:id', encryptedTextController.getById);
+router.get('/delete:id',checkLevel(['ADMIN', 'ENCODER']), encryptedTextController.deleteOne);
+router.get('/:id',checkLevel(['ADMIN', 'ENCODER']), encryptedTextController.getById);
 
 module.exports = router

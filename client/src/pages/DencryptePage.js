@@ -19,7 +19,7 @@ export const DencryptePage=()=>{
   
     const fetchLinks = useCallback(async () => {
       try {
-        const fetched = await request(`http://localhost:7000/api/dencryptedtext/${textId}`, 'GET')
+        const fetched = await request(`http://localhost:7000/api/dencryptedtext/${textId}`, 'GET', null, {Authorization: `Bearer ${auth.token}`})
         setEncrTexts(fetched)
       } catch (e) {}
     }, [request])
@@ -31,15 +31,15 @@ export const DencryptePage=()=>{
     const getPDF = async()=>{
         try {
             let fileName = `dencrText1.pdf`
-            axios.post(`http://localhost:7000/api/dencryptedtext/createPDF/${textId}`, {fileName}
+            axios.post(`http://localhost:7000/api/dencryptedtext/createPDF/${textId}`, {fileName}, {headers:{Authorization: `Bearer ${auth.token}`}}
             ).then(() =>
-                axios.get(`http://localhost:7000/api/dencryptedtext/getPdf/${fileName}`, { responseType: 'blob' })
+                axios.get(`http://localhost:7000/api/dencryptedtext/getPdf/${fileName}`, { responseType: 'blob', headers:{ Authorization: `Bearer ${auth.token}`}})
                 
             ).then((res) => {
                 console.log(res)
                 const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
                 saveAs(pdfBlob, 'dencr-text.pdf');
-            }).then(()=>axios.get(`http://localhost:7000/api/dencryptedtext/deletePdf/${fileName}`))        
+            })//.then(()=>axios.get(`http://localhost:7000/api/dencryptedtext/deletePdf/${fileName}`))        
         } catch (error) {
             
         }
