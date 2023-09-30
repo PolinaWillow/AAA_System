@@ -1,0 +1,26 @@
+{
+  "name": "tg-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start-debag": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PolinaWillow",
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "axios": "^1.5.1",
+    "config": "^3.3.9",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.11.3",
+    "pg-hstore": "^2.3.4",
+    "telegraf": "^4.14.0"
+  }
+}

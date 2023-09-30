@@ -7,7 +7,7 @@ import { useMessage } from '../hooks/message.hook'
 export const RegPage = () =>{
     const navigate = useNavigate();
     const [regForm, setRegForm] = useState({
-        login: '', email: '', number: '', password: ''
+        login: '', email: '',tgname:'', number: '', password: ''
     })
 
     const ChangeHandler = event =>{
@@ -45,7 +45,8 @@ export const RegPage = () =>{
                 <p className='base-header-2'>please,  enter your data</p>
                 <div className='reg-div-input-block'>
                     <input type='text' name='login' placeholder='Login' onChange={ChangeHandler}/>
-                    <input type='email' name='email' placeholder='Email' onChange={ChangeHandler}/>                        
+                    <input type='email' name='email' placeholder='Email' onChange={ChangeHandler}/> 
+                    <input type='text' name='tgname' placeholder='Tg name' onChange={ChangeHandler}/>                       
                     <input type='text' name='number' placeholder='Phone number' onChange={ChangeHandler}/>                    
                     <input type='password' name='password' placeholder='Password' onChange={ChangeHandler}/>            
                 </div>                   

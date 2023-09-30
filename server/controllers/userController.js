@@ -1,6 +1,8 @@
 const {User, Acceess_Level} = require('../models/dbModels')
 const jwt = require('jsonwebtoken')
 const Strybog = require('../ciphers/strybog/main')
+const http = require('request')
+
 
 const generateJwt = (id, login, level) => {
     return jwt.sign(
@@ -14,13 +16,17 @@ const Hash = (password) => {
     return Strybog.GetHash(password)
 }
 
+const GetCode = () =>{
+    return Math.floor(1000 + Math.random() * 9000);
+}
+
 class UserController{
     //Регистрация
     async registration(req,res){
         try {
-            const {login, email, number, password} = req.body
+            const {login, email, tgname, number, password} = req.body
             //Порверка валидности входных данных
-            if(login==""||email==""||number==""||password=="") return res.status(500).json({message: "Не все поля заполнены"})
+            if(login==""||email==""||number==""||tgname==""||password=="") return res.status(500).json({message: "Не все поля заполнены"})
 
             //Проверка наличия пользователя с таким же логином, email или телефоном
             const checklogin = await User.findOne({where: {login}})
@@ -33,12 +39,15 @@ class UserController{
             //Хэшируем пароль
             const passwordHash = Hash(password)
 
+            //Получение кода
+            let tgcode = GetCode()
+            //console.log(tgcode)
             //Создаем пользователя
-            const user = await User.create({login, email, number, password: passwordHash, acceessLevelId: 10})
+            const user = await User.create({login, email, number, password: passwordHash, acceessLevelId: 10, tgcode, tgname})
 
             //Генерация токена
             const level = await Acceess_Level.findOne({where: {id: user.acceessLevelId}})
-            const token = generateJwt(user.id, user.login, level.level_name)
+            //const token = generateJwt(user.id, user.login, level.level_name)
 
             return res.status(201).json({message:"Новый пользователь создан"})//json({token})
         } catch (error) {
@@ -75,5 +84,21 @@ class UserController{
     }
 
     async changeLevel(req,res){}
+
+
+    async gettgcode(req, res){
+        try {
+            const tgname = req.query.tgname//.tgname
+            if(tgname == "") return res.status(500).json({message: "Не указано имя пользователя в tg"})
+            const user = await User.findOne({where:{tgname: tgname}})
+            if(!user) return res.status(500).json({message: "Данный пользователь не существует"})
+    
+            return res.json({tgcode: user.tgcode})
+        } catch (error) {
+            res.status(error).json({message: "Что-то пошло не так"})
+        }
+    }
+
+    
 }
 module.exports = new UserController();

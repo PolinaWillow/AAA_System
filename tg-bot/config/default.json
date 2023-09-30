@@ -1,0 +1,14 @@
+{
+    "TELEGRAM_BOT": "6536667043:AAHmb6czI9U5Aya0yXkfxRhIVK4xoTcAQq8",
+
+
+    "DB_NAME": "AAA_System",
+    "DB_USER": "postgres",
+    "DB_PASSWORD": "userpg",
+    "DB_HOST": "localhost",
+    "DB_PORT": "5432",
+
+    "SECRET_KEY": "secret_key_123",
+
+    "PORT": 8000
+}

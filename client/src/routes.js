@@ -13,7 +13,6 @@ export const useRoutes = isAuth =>{
             <Routes>
                 <Route path="/" exact element={<HomePage/>}/>
                 <Route path="/dencryped/:id" exact element={<DencryptePage/>}/>
-                <Route path="/verify" exact element={<VerifyPage/>}/>
                 <Route path="/admin" exact element={<AdminPage/>}/>
                 <Route path="*" element={<Navigate to="/" replace />}/>             
             </Routes>
@@ -25,6 +24,7 @@ export const useRoutes = isAuth =>{
                 <Route path="/" exact element={<HomePage/>}/>
                 <Route path="/auth" exact element={<AuthPage/>}/>
                 <Route path="/reg" exact element={<RegPage/>}/>
+                <Route path="/verify" exact element={<VerifyPage/>}/>
                 <Route path="*" element={<Navigate to="/" replace />}/> 
            
         </Routes>

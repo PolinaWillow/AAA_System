@@ -14,7 +14,9 @@ const User = sequelize.define('user', {
     login: {type: DataTypes.STRING, unique: true, allowNull: false},
     email: {type: DataTypes.STRING, unique: true, allowNull: false},
     number: {type: DataTypes.STRING, unique: true, allowNull: false},
-    password: {type: DataTypes.STRING, allowNull: false}
+    password: {type: DataTypes.STRING, allowNull: false},
+    tgcode: {type: DataTypes.INTEGER,  allowNull: false},
+    tgname: {type: DataTypes.STRING,  allowNull: false}
 });
 
 //Модель зашифрованного текста
