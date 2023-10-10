@@ -2,6 +2,7 @@ const {User, Acceess_Level} = require('../models/dbModels')
 const jwt = require('jsonwebtoken')
 const Strybog = require('../ciphers/strybog/main')
 const http = require('request')
+const { where } = require('sequelize')
 
 
 const generateJwt = (id, login, level) => {
@@ -66,9 +67,10 @@ class UserController{
                 const passwordHash = Hash(password)
                 if (!(passwordHash === user.password)) return res.status(500).json({message: "Не верный пароль пользователя"})
                 else {
-                    const level = await Acceess_Level.findOne({where: {id: user.acceessLevelId}})
+                    /*const level = await Acceess_Level.findOne({where: {id: user.acceessLevelId}})
                     const token = generateJwt(user.id, user.login, level.level_name)
-                    return res.json({token, userId: user.id, userLevel: level.level_name, userLogin: user.login})
+                    return res.json({token, userId: user.id, userLevel: level.level_name, userLogin: user.login})*/
+                    return res.json({username: user.login})
                 }
             }
         } catch (error) {
@@ -83,20 +85,68 @@ class UserController{
         return res.json({token, userId: user.id})
     }
 
-    async changeLevel(req,res){}
+    async changeLevel(req,res){
+        const {login} = req.body
+        
+    }
 
-
-    async gettgcode(req, res){
+    async getall(req,res){
         try {
-            const tgname = req.query.tgname//.tgname
-            if(tgname == "") return res.status(500).json({message: "Не указано имя пользователя в tg"})
-            const user = await User.findOne({where:{tgname: tgname}})
-            if(!user) return res.status(500).json({message: "Данный пользователь не существует"})
-    
-            return res.json({tgcode: user.tgcode})
+            let users =await User.findAll({
+                attributes: ['id','login', 'email', 'acceessLevelId']
+            })
+            //console.log(users)
+            /*users.forEach(async (user)=>{
+                //console.log(user)
+                let level_id = user.dataValues.acceessLevelId
+                console.log(level_id)
+
+                try {
+                    const level_name = await Acceess_Level.findOne({where: {id:level_id}})
+                    console.log(level_name)
+                    user.dataValues.acceessLevelId = level_name.dataValues.level_name
+                    //console.log(user.dataValues.acceessLevelId )
+                } catch (error) {
+                    res.status(error).json({message: "Что-то пошло не так"})
+                }
+            })*/
+            res.json(users)
         } catch (error) {
             res.status(error).json({message: "Что-то пошло не так"})
         }
+    }
+
+
+    async upgatetgcode(req, res){
+        try {
+            //Генерация нового tgcode и сохранение в БД
+            let newCode = GetCode()
+            const {tgname} = req.body//req.query.tgname//.tgname
+            if(tgname == "") return res.status(500).json({message: "Не указано имя пользователя в tg"})
+            const user = await User.findOne({where:{tgname: tgname}})
+            if(!user) return res.status(500).json({message: "Данный пользователь не существует"})
+            await User.update({tgcode: newCode}, {where: {id: user.id}})
+
+    
+            return res.json({tgcode: newCode/*user.tgcode*/})
+        } catch (error) {
+            res.status(error).json({message: "Что-то пошло не так"})
+        }
+    }
+
+    async verify(req, res){
+        const {code, login} = req.body
+        if(code == "") return res.status(500).json({message: "Не указан верификационный код"})
+        const user = await User.findOne({where:{login: login}})
+        if(!user) return res.status(500).json({message: "Данный пользователь не существует"})
+        
+        console.log(code)
+        console.log(user.tgcode)
+        if(!(code==user.tgcode)) return res.status(500).json({message: "Не верный код пользователя"})
+
+        const level = await Acceess_Level.findOne({where: {id: user.acceessLevelId}})
+        const token = generateJwt(user.id, user.login, level.level_name)
+        return res.json({token, userId: user.id, userLevel: level.level_name, userLogin: user.login})
     }
 
     

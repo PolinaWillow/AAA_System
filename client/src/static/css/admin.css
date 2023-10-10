@@ -1,0 +1,25 @@
+.admin_find_block{
+    width: 90%;
+    display: inline-block;
+}
+
+.admin_user_table{
+    margin-top: 5%;
+    width: 85%;
+    display: inline-block;
+}
+
+.admin_table_header{
+    --bs-table-bg: var(--color-light-ligth-blue);
+}
+
+.admin_find_btn{
+    width: 10%;
+    display: inline-block;
+}
+
+.admin_find_input{
+    width: 70%;
+    margin: 0% 1% 0% 1%;
+    padding: 1% 2% 1% 2%;
+}

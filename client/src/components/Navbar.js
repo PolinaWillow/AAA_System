@@ -29,7 +29,7 @@ export const Navbar = ()=>{
 
     return (
         <div className='nav-body text-center'>
-            <img src={logo} alt="Лого Навбара"/>
+            <img src={logo} alt="Лого Навбара" onClick={navigateHome}/>
             <div>
                 {auth.token?(
                 <div >

@@ -2,7 +2,7 @@
     display: inline-block;
     margin-top: 10%;
     border-radius: 9px;
-    border-color: #83AFBF;
+    border-color:var( --color-blue);
     border-style: solid;
     width: 70%;
     height: 60vh;

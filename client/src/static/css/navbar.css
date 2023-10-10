@@ -3,11 +3,11 @@
     width: 25%/*345px*/;
     height: 100vh;
     padding-top: 5%;
-    background-color: #83AFBF;
+    background-color: var(--color-blue);
     display: inline-block;
     float: right;
 
-    box-shadow: -2px 1px 6px #586070
+    box-shadow: -2px 1px 6px var( --color-gray-blue);
 }
 
 .nav-admin-logo{

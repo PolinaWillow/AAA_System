@@ -50,7 +50,9 @@ export const RegPage = () =>{
                     <input type='text' name='number' placeholder='Phone number' onChange={ChangeHandler}/>                    
                     <input type='password' name='password' placeholder='Password' onChange={ChangeHandler}/>            
                 </div>                   
-                <Button className='base-btn' type='submit'disabled={loading} onClick={regHandler}>Sign up</Button>       
+                <Button className='base-btn' type='submit'disabled={loading} onClick={regHandler}>Sign up</Button>
+                <br/>
+                <p className='p-href'>Already have an account? <a href='/auth'>Sign in</a></p>       
             </div>
         </div>
     )

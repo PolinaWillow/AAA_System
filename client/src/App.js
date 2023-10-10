@@ -7,7 +7,7 @@ import {AuthContext} from './context/AuthContext'
 function App() {
   const {token, login, logout, userId, userLevel, userLogin} = useAuth()
   const isAuth = !!token
-  const routes = useRoutes(isAuth)
+  const routes = useRoutes(isAuth, userLevel)
 
   return (
     <AuthContext.Provider value={{

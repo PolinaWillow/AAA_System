@@ -1,11 +1,11 @@
 .base-auth-reg-page{
     width: 100%;
     height: 100vh;
-    background-color: #83AFBF;
+    background-color: var( --color-blue);
     padding-top: 5%;
 }
 .base-auth-reg-form{
-    background-color: #ffffff;
+    background-color: var(--color-white);
     border-radius: 28px;
     margin-left: 35%;
     width: 30%;
@@ -34,23 +34,23 @@
 }
 
 .base-btn{
-    background-color: #1F2B45;
+    background-color: var(--color-dark-dark-blue);
     width: 50%;
     border-style: none !important;
     border-radius: 9px;
-    color: #ffffff;
+    color: var(--color-white);
 }
 
 .base-btn:hover{
-    background-color: #374C7B;
+    background-color:var( --color-dark-blue);
 }
 
 .base-color-red{
-    background-color: #E4A387;
+    background-color:  var(--color-orange);
 }
 
 .base-color-red:hover{
-    background-color: #D1957B;
+    background-color: var(--color-dark-orande);
 }
 
 .base-btn-small{

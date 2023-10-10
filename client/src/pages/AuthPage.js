@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 import logo from '../static/icons/Logo.svg'
 import '../static/css/base.css'
@@ -9,6 +9,7 @@ import { AuthContext } from '../context/AuthContext'
 
 
 export const AuthPage = () =>{
+    const navigate = useNavigate();
     const auth = useContext(AuthContext)
     const [authForm, setAuthForm] = useState({
         login:'', password:''
@@ -32,7 +33,12 @@ export const AuthPage = () =>{
         try {
             const data = await request('http://localhost:7000/api/user/login', 'POST', {...authForm})
             //console.log('Data', data)
-            auth.login(data.token, data.userId, data.userLevel, data.userLogin)         
+            //auth.login(data.token, data.userId, data.userLevel, data.userLogin)
+            
+            console.log(data);
+            //save the username to the local storage
+            localStorage.setItem("username", data.username);
+            navigate('/verify')            
         } catch (error) {
             
         }
@@ -49,12 +55,13 @@ export const AuthPage = () =>{
                     <p className='base-header-1'>Welcome</p>
                     <p className='base-header-2'>please, login in to your accout</p>
                     
-                        <div>                    
-                            <input type='text' name='login' placeholder='Login' onChange={ChangeHandler}/>
-                            <input type='password' name='password' placeholder='Password'  onChange={ChangeHandler}/>
-                        </div>
-                        <Button type="submit" className='base-btn' onClick={authHandler} disabled={loading}>Log in</Button>
-                    
+                    <div>                    
+                        <input type='text' name='login' placeholder='Login' onChange={ChangeHandler}/>
+                        <input type='password' name='password' placeholder='Password'  onChange={ChangeHandler}/>
+                     </div>
+                    <Button type="submit" className='base-btn' onClick={authHandler} disabled={loading}>Log in</Button>
+                     <br/>
+                     <p className='p-href'>Don`t have an account? <a href='/reg'>Sign up</a></p>                  
                 </div>
             </div>
         </div>

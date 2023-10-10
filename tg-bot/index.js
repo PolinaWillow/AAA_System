@@ -20,8 +20,13 @@ bot.command('Get_code', async(ctx)=>{
     const userId = ctx.chat.id
     const tgname = ctx.chat.username
     try {
-        const url = `http://localhost:7000/api/user/gettgcode?tgname=${tgname}`
-        const response = await fetch(url)
+        const url = `http://localhost:7000/api/user/upgatetgcode`//?tgname=${tgname}`
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({tgname: tgname})
+        };
+        const response = await fetch(url, requestOptions)
         const data = await response.json()
         if(!response.ok){
             throw new Error(data.message ?? 'Что-то пошло не так')

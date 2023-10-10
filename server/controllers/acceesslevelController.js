@@ -15,7 +15,9 @@ class acceesslevelController{
     //Получение всех шифров
     async getAll(req,res){
         try {
-            const levels = await Acceess_Level.findAll()
+            const levels = await Acceess_Level.findAll({
+                attributes: ['id', 'level_name']
+            })
             res.json(levels)
         } catch (error) {
             res.status(500).json({message: "Что-то пошло не так, попробуйте снова"/*err.message*/})
