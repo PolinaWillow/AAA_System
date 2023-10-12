@@ -1,12 +1,12 @@
-import React, {useContext, useState, useCallback, useEffect} from 'react'
+import React, {useContext, useState, useCallback, useEffect, useRef} from 'react'
 import { useHttp } from '../hooks/http.hook'
 import { Navbar } from '../components/Navbar'
-import {AddEncryptionText} from '../components/modals/AddEncryptionText'
 import { TextCard } from '../components/TextCarrd' 
-import addBtn from '../static/icons/AddEncryption.svg'
 import {AuthContext} from '../context/AuthContext'
 import '../static/css/home.css'
 import '../static/css/base.css'
+import { ToolTip } from '../components/toolTips'
+import {AddNewButton} from "../components/buttons/addNew"
 
 export const HomePage = () =>{
     const auth = useContext(AuthContext)
@@ -30,17 +30,13 @@ export const HomePage = () =>{
             <div className="base-page">
                 <div className='home-body-block text-center'>
                     <div className='home-list text-start'>
-                        {encrTexts.map((elem, index)=><TextCard encrText={elem} key={index} elementNum={index+1}/>)}
+                        {encrTexts.map((elem, index)=><TextCard elem={elem} key={elem.id} elementNum={index+1}/>)}
                     </div>
-                    
                 </div>
                 <div className='home-footer-block'>
-                {(auth.userLevel ==="ADMIN" || auth.userLevel ==="ENCODER")&&( 
-                    <>
-                        <img className = "home-addBtn" src={addBtn} alt="Add Encryption" role="button" data-bs-toggle="modal" data-bs-target="#AddTextModal"/>
-                        <AddEncryptionText BlockId = {"AddTextModal"} creatorId={auth.userId}/>
-                    </>         
-                )}
+                    {(auth.userLevel ==="ADMIN" || auth.userLevel ==="ENCODER")&&( 
+                        <ToolTip text={'Add new encrypted text'} children={<AddNewButton/>}/>
+                    )}
                 </div>
             </div>           
         </div>

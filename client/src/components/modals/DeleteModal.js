@@ -16,10 +16,11 @@ export const DeleteModal = ({BlockId, encrText})=>{
         clearError()
     }, [error, message, clearError])
 
+
+
     const deleteHandler = async()=>{
         try {
-            console.log(encrText.id)
-            await request(`http://localhost:7000/api/encryptedtext/delete${encrText.id}`, 'GET',null, {Authorization: `Bearer ${auth.token}`})
+            await request(`http://localhost:7000/api/encryptedtext/delete${encrText}`, 'GET', null, {Authorization: `Bearer ${auth.token}`})
             alert("The encrypted text was delete")
             window.location.reload();
         } catch (error) {}

@@ -47,6 +47,7 @@ class EncryptedTextController{
     async deleteOne(req,res){
         try {
             const id = req.params
+            console.log(id)
             await Encrypted_Text.destroy({where: id})
             return res.status(201).json({message:"Зашифрованный текст удален"})
 

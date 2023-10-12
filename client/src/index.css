@@ -1,4 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import "../src/static/css/toolTips.css";
 
 :root{
     --color-white:#ffffff;

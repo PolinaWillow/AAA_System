@@ -1,0 +1,25 @@
+.toolsTips-block{
+    display: inline-block;
+}
+
+.toolTips-container{
+    display: flex;
+    position: relative;
+}
+
+.toolTips-text{
+    position: absolute;
+    top: -150%;
+
+    width: auto;
+    padding: 4px 12px;
+    margin-left: calc(100%);
+    justify-content: center;
+    color: var(--color-blue);
+    background-color: var(--color-light-ligth-blue);
+    border-radius: 12px;
+    text-align: center;
+    white-space: pre-line;
+    font-family:  'Snell Roundhand', cursive;
+    pointer-events: none;
+}
